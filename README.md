@@ -6,7 +6,7 @@ UML Diagram:
 ![UML](UML.png)
 
 ERD Diagram:
-![ERD](ERD.png)
+![ERD](ER.png)
 
 Relational Schema: Schema.pdf
 
