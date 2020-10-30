@@ -1,1 +1,1 @@
-An example of a Node + Sqlite + Express app
+This is a lightweight database carrying data about movies, actors, and directors.

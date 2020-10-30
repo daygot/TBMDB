@@ -1,5 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Welcome
+  p Welcome to #{title}!
+  form(action="/movies")
+    input(type="submit" value="click me to see all movies!")
+  br
+  form(action="/people")
+    input(type="submit" value="click me to see all people!")

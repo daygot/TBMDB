@@ -1,0 +1,79 @@
+extends layout
+
+block content
+  h1 Movies
+
+  form(action="/")
+    input(type="submit" value="click me to go back!")
+
+  h2 Create Movie
+  form(action="/movies/create" method="POST")
+    label Title: 
+      input(type="text" name="title")
+    br
+    label Box Office: 
+      input(type="number" min="0" step="0.01" name="box_office")
+    br
+    label Release Date: 
+      input(type="date" name="release_date")
+    br
+    label Studio: 
+      select(name="studio_id")
+        option(disabled selected value) -- Select an Option -- 
+        each s in studios
+          option(value="#{s.studio_id}") #{s.studio_name}
+    br
+    label User Rating: 
+      input(type="number" min="0" step="0.01" name="user_rating")
+    br
+    label Director: 
+      select(name="director_id")
+        option(disabled selected value) -- Select an Option -- 
+        each p in people
+          option(value="#{p.people_id}") #{p.first_name} #{p.last_name}
+    br
+    label Genre: 
+      select(name="genre_id")
+        option(disabled selected value) -- Select an Option -- 
+        each g in genres
+          option(value="#{g.genre_id}") #{g.genre}
+    br
+    label Country: 
+      select(name="country_id")
+        option(disabled selected value) -- Select an Option -- 
+        each c in countries
+          option(value="#{c.country_id}") #{c.country_name}
+    br
+    label Rating: 
+      select(name="rating_id")
+        option(disabled selected value) -- Select an Option -- 
+        each r in ratings
+          option(value="#{r.rating_id}") #{r.rating}
+    br
+    label Language: 
+      select(name="language_id")
+        option(disabled selected value) -- Select an Option -- 
+        each l in languages
+          option(value="#{l.language_id}") #{l.language}
+    br
+    button(type="submit") Add Movie
+
+  hr
+
+  form(action="/movies" method="GET")
+    input(type="text" placeholder="Search by title" name="title" value=title)
+    button(type="submit") Search
+
+  ul
+    each m in movies
+      li
+        p #{m.title}
+        p Released: #{m.release_date}
+        p Box Office: $#{m.box_office}
+        form(action="/movies/delete" method="POST")
+          input(type="submit" name="#{m.movie_id}" value="Delete Me")
+        br
+        form(action="/movie_update")
+          input(type="submit" name="#{m.movie_id}" value="Update Me")
+
+

@@ -1,0 +1,59 @@
+extends layout
+
+block content
+  h1 Movie Update 
+
+  form(action="/movies")
+    input(type="submit" value="click me to go back!")
+
+  form(action="/movie_update/post" value="#{movie_id}" method="POST")
+    input(type="hidden" name="movie_id" value="#{movie_id}")
+    label Title: 
+      input(type="text" name="title" value="#{movie[0].title}")
+    br
+    label Box Office: 
+      input(type="number" min="0" step="0.01" name="box_office" value="#{movie[0].box_office}")
+    br
+    label Release Date: 
+      input(type="date" name="release_date"  value="#{movie[0].release_date}")
+    br
+    label Studio: 
+      select(name="studio_id")
+        option(disabled selected value) -- Select an Option -- 
+        each s in studios
+          option(value="#{s.studio_id}") #{s.studio_name}
+    br
+    label User Rating: 
+      input(type="number" min="0" step="0.01" name="user_rating" value="#{movie[0].user_rating}")
+    br
+    label Director: 
+      select(name="director_id")
+        option(disabled selected value) -- Select an Option -- 
+        each p in people
+          option(value="#{p.people_id}") #{p.first_name} #{p.last_name}
+    br
+    label Genre: 
+      select(name="genre_id")
+        option(disabled selected value) -- Select an Option --       
+        each g in genres
+          option(value="#{g.genre_id}") #{g.genre}
+    br
+    label Country: 
+      select(name="country_id")
+        option(disabled selected value) -- Select an Option --       
+        each c in countries
+          option(value="#{c.country_id}") #{c.country_name}
+    br
+    label Rating: 
+      select(name="rating_id")
+        option(disabled selected value) -- Select an Option --       
+        each r in ratings
+          option(value="#{r.rating_id}") #{r.rating}
+    br
+    label Language: 
+      select(name="language_id")
+        option(disabled selected value) -- Select an Option --       
+        each l in languages
+          option(value="#{l.language_id}") #{l.language}
+    br
+    button(type="submit") Update Movie
